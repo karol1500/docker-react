@@ -1,0 +1,14 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# in the current setup its not required - we access files on local machine
+COPY . .
+
+RUN chown -R node:node /app/node_modules
+
+
+CMD ["npm", "run", "start"]
